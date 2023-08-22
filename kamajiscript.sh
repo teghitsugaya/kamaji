@@ -132,7 +132,6 @@ echo ""
 echo ""
 
 echo "Node Cluster"
-echo ""
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get nodes
 echo ""
 echo ""
@@ -140,6 +139,7 @@ echo ""
 echo "Your Cluster is Ready !!!"
 echo ""
 echo "Your Kubeconfig is = ${TENANT_NAME}.kubeconfig"
+echo ""
 
 rm -rf script.sh > /dev/null 2>&1
 rm -rf kamaji-script.sh > /dev/null 2>&1
