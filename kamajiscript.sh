@@ -14,8 +14,8 @@ export TENANT_VERSION=v1.26.1
 #Worker Tenant parameters
 export WORKER_VERSION=1.26.1
 export WORKER_FLAVOR=GP.2C4G
-export AVAILABILITY_ZONE=AZ_Public01_DC1
-export NETWORK=Public_Subnet02_DC1
+export AVAILABILITY_ZONE=AZ_Public01_DC3
+export NETWORK=Public_Subnet02_DC3
 
 echo "Deploy Cluster Kubernetes"
 echo "Cluster Name: ${TENANT_NAME}"
@@ -80,13 +80,18 @@ runcmd:
  - echo "net.bridge.bridge-nf-call-iptables = 1" >> 99-kubernetes-cri.conf
  - echo "net.ipv4.ip_forward = 1" >> 99-kubernetes-cri.conf
  - echo "net.bridge.bridge-nf-call-ip6tables = 1" >> 99-kubernetes-cri.conf
- - sudo apt update && sudo apt install -y containerd
+ - sudo apt update  
+ - sudo apt install -y containerd
  - sudo mkdir -p /etc/containerd
  - containerd config default | sed -e "s#SystemdCgroup = false#SystemdCgroup = true#g" | sudo tee -a /etc/containerd/config.toml
- - sudo systemctl restart containerd && sudo systemctl enable containerd
- - sudo chown -R root:root containerd.conf && sudo mv containerd.conf /etc/modules-load.d/containerd.conf
- - sudo modprobe overlay && sudo modprobe br_netfilter
- - sudo chown -R root:root 99-kubernetes-cri.conf && sudo mv 99-kubernetes-cri.conf /etc/sysctl.d/99-kubernetes-cri.conf
+ - sudo systemctl restart containerd 
+ - sudo systemctl enable containerd
+ - sudo chown -R root:root containerd.conf 
+ - sudo mv containerd.conf /etc/modules-load.d/containerd.conf
+ - sudo modprobe overlay 
+ - sudo modprobe br_netfilter
+ - sudo chown -R root:root 99-kubernetes-cri.conf 
+ - sudo mv 99-kubernetes-cri.conf /etc/sysctl.d/99-kubernetes-cri.conf
  - sudo sysctl --system
  - echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
  - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
@@ -116,7 +121,7 @@ export OS_IDENTITY_API_VERSION=3
 
 sleep 2
 
-openstack server create --flavor ${WORKER_FLAVOR} --image "Ubuntu 22.04 LTS" --network ${NETWORK} --security-group kamaji-rules --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min 3 --max 3 --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker" > /dev/null 2>&1
+openstack server create --flavor ${WORKER_FLAVOR} --image "Ubuntu 20.04 LTS" --network ${NETWORK} --security-group kamaji-rules --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min 3 --max 3 --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker" > /dev/null 2>&1
 
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
