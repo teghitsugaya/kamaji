@@ -1,5 +1,8 @@
 #!/bin/bash
 echo ""
+##export cluster admin kamaji
+export KUBECONFIG=~/.kube/config
+
 #kamaji parameters
 export KAMAJI_NAMESPACE=default
 
@@ -138,7 +141,7 @@ echo ""
 
 echo "Your Cluster is Ready !!!"
 echo ""
-echo "Your Kubeconfig is = ${TENANT_NAME}.kubeconfig"
+echo "Your Kubeconfig on = $PWD/${TENANT_NAME}.kubeconfig"
 echo ""
 
 rm -rf script.sh > /dev/null 2>&1
