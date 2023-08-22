@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo ""
 #kamaji parameters
 export KAMAJI_NAMESPACE=default
 
@@ -14,12 +14,9 @@ export WORKER_FLAVOR=GP.2C4G
 export AVAILABILITY_ZONE=AZ_Public01_DC1
 export NETWORK=Public_Subnet02_DC1
 
-sleep 5
-
 echo "Deploy Cluster Kubernetes"
 echo "Cluster Name: ${TENANT_NAME}"
 echo "Version: ${TENANT_VERSION}"
-echo ""
 echo ""
 echo "Create Tenant Control Plane"
 
