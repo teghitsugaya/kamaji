@@ -18,6 +18,7 @@ echo "Deploy Cluster Kubernetes"
 echo "Cluster Name: ${TENANT_NAME}"
 echo "Version: ${TENANT_VERSION}"
 echo ""
+echo ""
 echo "Create Tenant Control Plane"
 
 kubectl create -f - <<EOF > /dev/null 2>&1
