@@ -53,7 +53,7 @@ spec:
       agent: {}
 EOF
 
-sleep 2m 30s
+sleep 2m 10s
 
 echo "Create Tenant Control Plane SUCCESS"
 
@@ -125,7 +125,7 @@ openstack server create --flavor ${WORKER_FLAVOR} --image "Ubuntu 22.04 LTS" --n
 
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
-sleep 2m 50s
+sleep 2m 15s
 
 echo "Create WORKER SUCCESS"
 
