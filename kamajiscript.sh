@@ -127,7 +127,7 @@ echo ""
 
 echo "Your Cluster is Ready !!!"
 echo ""
-echo "Your Kubeconfig on = $PWD/${TENANT_NAME}.kubeconfig"
+echo "To Use your cluster = export KUBECONFIG=$PWD/${TENANT_NAME}.kubeconfig"
 echo ""
 
 rm -rf script.sh > /dev/null 2>&1
