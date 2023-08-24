@@ -8,11 +8,11 @@ export KAMAJI_NAMESPACE=default
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
-export TENANT_NAME=kube-127
-export TENANT_VERSION=v1.27.0
+export TENANT_NAME=kube-126
+export TENANT_VERSION=v1.26.1
 
 #Worker Tenant parameters
-export WORKER_VERSION=1.27.0
+export WORKER_VERSION=1.26.1
 export WORKER_FLAVOR=GP.2C4G
 export AVAILABILITY_ZONE=AZ_Public01_DC1
 export NETWORK=Public_Subnet02_DC1
