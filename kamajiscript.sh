@@ -106,7 +106,7 @@ openstack server create --flavor ${WORKER_FLAVOR} --image "Ubuntu Worker ${WORKE
 
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
-sleep 2m 15s
+sleep 2m 1s
 
 echo "Create WORKER SUCCESS"
 
