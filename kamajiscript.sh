@@ -8,14 +8,15 @@ export KAMAJI_NAMESPACE=default
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
-export TENANT_NAME=kube-auto
-export TENANT_VERSION=v1.26.1
+export TENANT_NAME=kube-127
+export TENANT_VERSION=v1.27.1
 
 #Worker Tenant parameters
-export WORKER_VERSION=1.26.1
+export WORKER_VERSION=1.27.1
 export WORKER_FLAVOR=GP.2C4G
-export AVAILABILITY_ZONE=AZ_Public01_DC3
-export NETWORK=Public_Subnet02_DC3
+export AVAILABILITY_ZONE=AZ_Public01_DC1
+export NETWORK=Public_Subnet02_DC1
+export COUNT=2
 
 echo "Deploy Cluster Kubernetes"
 echo "Cluster Name: ${TENANT_NAME}"
@@ -100,7 +101,7 @@ export OS_IDENTITY_API_VERSION=3
 
 sleep 2
 
-openstack server create --flavor ${WORKER_FLAVOR} --image "ubuntu 22.04 worker kubernetes" --network ${NETWORK} --security-group kamaji-rules --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min 3 --max 3 --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker" > /dev/null 2>&1
+openstack server create --flavor ${WORKER_FLAVOR} --image "ubuntu 22.04 worker kubernetes" --network ${NETWORK} --security-group kamaji-rules --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker" > /dev/null 2>&1
 
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
