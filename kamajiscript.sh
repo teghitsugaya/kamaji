@@ -8,17 +8,17 @@ export KAMAJI_NAMESPACE=default
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
-export TENANT_NAME=kube-127
+export TENANT_NAME=kube-125
 #Version Available = 1.27.0, 1.26.7, 1.25.12
-export TENANT_VERSION=v1.27.0
+export TENANT_VERSION=v1.25.12
 
 #Worker Tenant parameters
 #Version Available = 1.27.0, 1.26.7, 1.25.12
-export WORKER_VERSION=1.27.0
+export WORKER_VERSION=1.25.12
 export WORKER_FLAVOR=GP.2C4G
 export AVAILABILITY_ZONE=AZ_Public01_DC3
 export NETWORK=Public_Subnet02_DC3
-export COUNT=1
+export COUNT=5
 
 echo "Deploy Cluster Kubernetes"
 echo "Cluster Name: ${TENANT_NAME}"
