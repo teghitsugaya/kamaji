@@ -109,8 +109,8 @@ export OS_IDENTITY_API_VERSION=3
 openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group kamaji-rules --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker" > /dev/null 2>&1
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
-while true; do  
-  STATUS=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get nodes --no-headers | grep "${TENANT_NAME}-${TENANT_VERSION}-worker-1 | awk '{print $2}')
+while true; do 
+  STATUS=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get nodes --no-headers | grep "${TENANT_NAME}-${TENANT_VERSION}-worker-1" | awk '{print $2}')
   
 case "$STATUS" in
     "Ready")
