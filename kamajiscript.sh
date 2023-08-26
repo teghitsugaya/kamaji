@@ -78,8 +78,7 @@ cat << EOF | tee script.sh > /dev/null 2>&1
 #cloud-config
 debug: True
 runcmd:
- - sudo apt install -y kubeadm=${WORKER_VERSION}-00 kubelet=${WORKER_VERSION}-00 kubectl=${WORKER_VERSION}-00 --allow-downgrades --allow-change-held-packages
- - sudo apt-mark hold kubelet kubeadm kubectl 
+ - bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/containerdkube126.sh)
  - $JOIN_CMD
 EOF
 
