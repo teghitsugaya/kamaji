@@ -112,14 +112,23 @@ kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubuserco
 while true; do  
   STATUS=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get nodes --no-headers | awk '{print $2}')
    
-case "$STATUS" in
-    "Ready")
-      echo "Create WORKER SUCCESS"
-      break
-      ;;
-    *)
-  esac
+if [[ "$STATUS" == *"NotReady"* ]]; then
+    echo "Tidak semua node siap. 
+    sleep 5  
+  else
+    echo "Create WORKER SUCCESS"
+    break  
+  fi
 done
+
+#case "$STATUS" in
+#    "Ready")
+#      echo "Create WORKER SUCCESS"
+#      break
+#      ;;
+#    *)
+#  esac
+#done
 
 sleep 2s
 
