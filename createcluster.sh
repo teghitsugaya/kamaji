@@ -123,6 +123,8 @@ done
 
 sleep 2s
 
+echo ""
+echo ""
 echo "Node Cluster"
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get nodes
 echo ""
