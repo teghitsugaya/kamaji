@@ -24,6 +24,7 @@ echo "Version: ${TENANT_VERSION}"
 echo ""
 echo ""
 echo "Create Tenant Control Plane"
+echo "Waiting..."
 
 kubectl create -f - <<EOF > /dev/null 2>&1
 apiVersion: kamaji.clastix.io/v1alpha1
@@ -74,6 +75,7 @@ kubectl get secrets -n ${TENANT_NAMESPACE} ${TENANT_NAME}-admin-kubeconfig -o js
 
 echo ""
 echo "Create WORKER"
+echo "Waiting..."
 
 
 JOIN_CMD=$(kubeadm --kubeconfig=${TENANT_NAME}.kubeconfig token create --print-join-command)
