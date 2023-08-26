@@ -18,7 +18,7 @@ export WORKER_VERSION=1.26.1
 export WORKER_FLAVOR=GP.2C4G
 export AVAILABILITY_ZONE=AZ_Public01_DC3
 export NETWORK=Public_Subnet02_DC3
-export COUNT=3
+export COUNT=1
 
 echo "Deploy Cluster Kubernetes"
 echo "Cluster Name: ${TENANT_NAME}"
@@ -80,7 +80,7 @@ debug: True
 runcmd:
  - wget https://raw.githubusercontent.com/teghitsugaya/kamaji/main/${TENANT_VERSION}
  - sudo sh ${TENANT_VERSION}
- - $JOIN_CMD
+ - ${JOIN_CMD}
 EOF
 
 sleep 2
