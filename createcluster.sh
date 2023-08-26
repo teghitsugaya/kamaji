@@ -110,16 +110,28 @@ openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 2
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
 while true; do 
-  STATUS=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get nodes --no-headers | grep "${TENANT_NAME}-${TENANT_VERSION}-worker-1" | awk '{print $2}')
+  #STATUS=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get nodes --no-headers | grep "${TENANT_NAME}-${TENANT_VERSION}-worker-1" | awk '{print $2}')
+  STATUS=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get deploy -n kube-system | grep coredns | awk '{print $4}')
   
+  
+#case "$STATUS" in
+#    "Ready")
+#      echo "Create WORKER SUCCESS"
+#      break
+#      ;;
+#    *)
+#  esac
+#done
+
 case "$STATUS" in
-    "Ready")
+    "2")
       echo "Create WORKER SUCCESS"
       break
       ;;
     *)
   esac
 done
+
 
 sleep 2s
 
