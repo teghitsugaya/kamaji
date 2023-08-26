@@ -21,7 +21,6 @@ sudo modprobe overlay && sudo modprobe br_netfilter
 sudo chown -R root:root 99-kubernetes-cri.conf 
 sudo mv 99-kubernetes-cri.conf /etc/sysctl.d/99-kubernetes-cri.conf
 sudo sysctl --system
-
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-get update
