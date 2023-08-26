@@ -19,7 +19,7 @@ sudo chown -R root:root containerd.conf
 sudo mv containerd.conf /etc/modules-load.d/containerd.conf
 sudo modprobe overlay && sudo modprobe br_netfilter
 sudo chown -R root:root 99-kubernetes-cri.conf 
-sudo mv 99-kubernetes-cri.conf /etc/sysctl.d/99-kubernetes-cri.conf'
+sudo mv 99-kubernetes-cri.conf /etc/sysctl.d/99-kubernetes-cri.conf
 sudo sysctl --system
 
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
