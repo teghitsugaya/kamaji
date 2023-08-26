@@ -9,5 +9,9 @@ bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/addwor
 
 ##Delete Worker
 
+- drain node
+- cordon node
+- kubectl delete nodes $(node_worker)
+- openstack server delete $(node_worker)
 
 
