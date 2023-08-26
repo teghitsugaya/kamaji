@@ -78,7 +78,7 @@ cat << EOF | tee script.sh > /dev/null 2>&1
 #cloud-config
 debug: True
 runcmd:
- - bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/v1.26.1)
+ - bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/${TENANT_VERSION})
  - $JOIN_CMD
 EOF
 
