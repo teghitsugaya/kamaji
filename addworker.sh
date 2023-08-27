@@ -15,7 +15,7 @@ export AVAILABILITY_ZONE=AZ_Public01_DC2
 export NETWORK=Public_Subnet02_DC2
 export COUNT=2
 
-#project tenant parameters
+#Proejct Tenant Parameters
 export OS_AUTH_URL=https://jktosp-horizon.dcloud.co.id/identity/v3/
 export OS_PROJECT_ID=8b39b22b07e644c5996ccb4ca196fb06
 export OS_PROJECT_NAME="Cloud Development"
@@ -46,7 +46,7 @@ runcmd:
  - ${JOIN_CMD}
 EOF
 
-openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group kamaji-rules --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker" > /dev/null 2>&1
+openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker" > /dev/null 2>&1
 
 sleep 1m 30s
 
