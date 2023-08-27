@@ -16,10 +16,16 @@ export NETWORK=Public_Subnet02_DC2
 export COUNT=3
 
 #project tenant parameters
+export OS_AUTH_URL=https://jktosp-horizon.dcloud.co.id/identity/v3/
 export OS_PROJECT_ID=8b39b22b07e644c5996ccb4ca196fb06
 export OS_PROJECT_NAME="Cloud Development"
+export OS_USER_DOMAIN_NAME="Default"
+export OS_PROJECT_DOMAIN_ID="default"
 export OS_USERNAME="teguh.imanto"
 export OS_PASSWORD=D4t4c0mm@2023!!!
+export OS_REGION_NAME="RegionOne"
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
 
 echo "Deploy Cluster Kubernetes"
 echo "Cluster Name: ${TENANT_NAME}"
@@ -58,7 +64,6 @@ spec:
       agent: {}
 EOF
 
-
 while true; do
   STATUS=$(kubectl get tcp | grep ${TENANT_NAME} | awk '{print $3}')
 
@@ -80,7 +85,6 @@ echo ""
 echo "Create WORKER"
 echo "Waiting..."
 
-
 JOIN_CMD=$(kubeadm --kubeconfig=${TENANT_NAME}.kubeconfig token create --print-join-command)
 
 cat << EOF | tee script.sh > /dev/null 2>&1
@@ -91,17 +95,6 @@ runcmd:
  - sudo apt-mark hold kubelet kubeadm kubectl
  - ${JOIN_CMD}
 EOF
-
-export OS_AUTH_URL=https://jktosp-horizon.dcloud.co.id/identity/v3/
-export OS_PROJECT_ID=${OS_PROJECT_ID}
-export OS_PROJECT_NAME=${OS_PROJECT_NAME}
-export OS_USER_DOMAIN_NAME="Default"
-export OS_PROJECT_DOMAIN_ID="default"
-export OS_USERNAME=${OS_USERNAME}
-export OS_PASSWORD=${OS_PASSWORD}
-export OS_REGION_NAME="RegionOne"
-export OS_INTERFACE=public
-export OS_IDENTITY_API_VERSION=3
 
 openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group kamaji-rules --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker" > /dev/null 2>&1
 
