@@ -5,15 +5,15 @@ export KUBECONFIG=~/.kube/config
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
-export TENANT_NAME=my-kube
-export TENANT_VERSION=v1.25.12  #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
+export TENANT_NAME=teg-kube
+export TENANT_VERSION=v1.26.7  #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
 
 #worker Tenant parameters
-export WORKER_VERSION=1.25.12 #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
-export WORKER_FLAVOR=GP.2C4G
-export AVAILABILITY_ZONE=AZ_Public01_DC3
-export NETWORK=Public_Subnet02_DC3
-export COUNT=3
+export WORKER_VERSION=1.26.7 #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
+export WORKER_FLAVOR=GP.1C2G
+export AVAILABILITY_ZONE=AZ_Public01_DC2
+export NETWORK=Public_Subnet02_DC2
+export COUNT=2
 
 #project tenant parameters
 export OS_PROJECT_ID=8b39b22b07e644c5996ccb4ca196fb06
