@@ -85,8 +85,8 @@ runcmd:
 EOF
 
 export OS_AUTH_URL=https://jktosp-horizon.dcloud.co.id/identity/v3/
-export OS_PROJECT_ID=8b39b22b07e644c5996ccb4ca196fb06
-export OS_PROJECT_NAME="Cloud Development"
+export OS_PROJECT_ID=55e36960719f41159aca054a14d2ba03
+export OS_PROJECT_NAME="Infra Kamaji"
 export OS_USER_DOMAIN_NAME="Default"
 if [ -z "$OS_USER_DOMAIN_NAME" ]; then unset OS_USER_DOMAIN_NAME; fi
 export OS_PROJECT_DOMAIN_ID="default"
