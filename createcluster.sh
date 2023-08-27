@@ -1,7 +1,7 @@
 #!/bin/bash
 echo ""
 
-export rand=$(openssl rand -hex 3)
+export rand=$(openssl rand -hex 2)
 
 ##export cluster admin kamaji
 export KUBECONFIG=~/.kube/config
