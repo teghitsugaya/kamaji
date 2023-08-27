@@ -5,7 +5,7 @@ export KUBECONFIG=~/.kube/config
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
-export TENANT_NAME=teg-kube
+export TENANT_NAME=teg-kube #Tenant Name must be unique
 export TENANT_VERSION=v1.26.7  #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
 
 #worker Tenant parameters
