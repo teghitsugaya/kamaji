@@ -117,7 +117,6 @@ case "$STATUS" in
   esac
 done
 
-
 sleep 2s
 
 echo ""
@@ -133,4 +132,4 @@ echo "To Use your cluster = export KUBECONFIG=$PWD/${TENANT_NAME}.kubeconfig"
 echo ""
 
 rm -rf script.sh > /dev/null 2>&1
-rm -rf kamaji-script.sh > /dev/null 2>&1
+rm -rf createcluster.sh > /dev/null 2>&1
