@@ -49,7 +49,7 @@ EOF
 
 openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker-add" > /dev/null 2>&1
 
-sleep 1m 30s
+sleep 2m 1s
 
 echo "Create WORKER SUCCESS"
 
