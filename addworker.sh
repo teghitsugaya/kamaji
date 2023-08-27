@@ -1,5 +1,8 @@
 #!/bin/bash
 echo ""
+
+export rand=$(openssl rand -hex 3)
+
 ##export cluster admin kamaji
 export KUBECONFIG=~/.kube/config
 
@@ -47,7 +50,7 @@ runcmd:
  - ${JOIN_CMD}
 EOF
 
-openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${TENANT_VERSION}-worker-add" > /dev/null 2>&1
+openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${rand}-worker" > /dev/null 2>&1
 
 sleep 2m 1s
 
