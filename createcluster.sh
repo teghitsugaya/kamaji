@@ -8,7 +8,7 @@ export KUBECONFIG=~/.kube/config
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
-export TENANT_NAME=teg-kube #Tenant Name must be unique
+export TENANT_NAME=kube-${rand} #Tenant Name must be unique
 export TENANT_VERSION=v1.26.7  #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
 
 #worker Tenant parameters
@@ -100,7 +100,7 @@ runcmd:
  - ${JOIN_CMD}
 EOF
 
-openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${rand}-worker" > /dev/null 2>&1
+openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-worker" > /dev/null 2>&1
 
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
