@@ -1,22 +1,25 @@
 #!/bin/bash
 echo ""
 
-export rand=$(openssl rand -hex 2)
-
 ##export cluster admin kamaji
 export KUBECONFIG=~/.kube/config
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
-export TENANT_NAME=kube-e5da79 #must same form exsiting cluster name
-export TENANT_VERSION=v1.26.7  #version must same form exsiting cluster version, #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
+
+#cluster name and version must same form exsiting cluster
+#to see exsiting cluster, exceute this command !
+   #kubectl get tcp -n default  | awk 'BEGIN { print "NAME VERSION" } NR > 1 { print $1, $2 }'
+
+export TENANT_NAME=kube-0974
+export TENANT_VERSION=v1.26.7
 
 #worker Tenant parameters
 export WORKER_VERSION=1.26.7 #version must same form exsiting cluster version, #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
 export WORKER_FLAVOR=GP.1C2G
 export AVAILABILITY_ZONE=AZ_Public01_DC2
 export NETWORK=Public_Subnet02_DC2
-export COUNT=2
+export COUNT=3
 
 #Proejct Tenant Parameters
 export OS_AUTH_URL=https://jktosp-horizon.dcloud.co.id/identity/v3/
@@ -50,7 +53,10 @@ runcmd:
  - ${JOIN_CMD}
 EOF
 
-openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --min ${COUNT} --max ${COUNT} --user-data script.sh "${TENANT_NAME}-${rand}-worker" > /dev/null 2>&1
+for i in $(seq 1 ${COUNT}); do
+   export rand=$(openssl rand -hex 2)
+   openstack server create --flavor ${WORKER_FLAVOR} --image "Worker Image Ubuntu 22.04" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --user-data script.sh "${TENANT_NAME}-worker-${rand}" > /dev/null 2>&1
+done
 
 sleep 2m 1s
 
