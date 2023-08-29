@@ -1,5 +1,5 @@
 # Prequisites
-  ## To Running The script for Create a clusters, Workstation must be:
+  ### To Running The script for Create a clusters, Workstation must be:
    - Installed Kubeadm Package
    - Installed Kubectl Package
    - Installed Openstack client Package
@@ -8,15 +8,15 @@
    - have a Keystone Tenant Project Openstack 
    
 # Create Cluster
-  ## Edit the parameters, and execute
+  ### Edit the parameters, and execute
       bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/createcluster.sh)
 
 # Add Worker
-  ## To Add the Worker, cluster name and version must same form exsiting cluster,
-  ## To see exsiting cluster, exceute this command !
+  ### To Add the Worker, cluster name and version must same form exsiting cluster,
+  ### To see exsiting cluster, exceute this command !
     kubectl get tcp -n default  | awk 'BEGIN { print "NAME VERSION" } NR > 1 { print $1, $2 }'
   
-  ## Edit the parameters, and execute  
+  ### Edit the parameters, and execute  
     bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/addworker.sh)
                
 # Delete Worker
