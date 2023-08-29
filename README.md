@@ -9,7 +9,7 @@
    
 # Create Cluster
   ### Edit the parameters, and execute
-      bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/createcluster.sh)
+    bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/createcluster.sh)
 
 # Add Worker
   ### To Add the Worker, cluster name and version must same form exsiting cluster,
