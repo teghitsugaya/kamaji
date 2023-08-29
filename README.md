@@ -7,11 +7,11 @@ Prequisites
    - have a Kubeconfig Admin Kamaji Cluster
    - have a Keystone Tenant Project Openstack 
    
-To Create Cluster
+Create Cluster
   Edit the parameters, and execute
-    bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/createcluster.sh)
+      bash <(curl -s https://raw.githubusercontent.com/teghitsugaya/kamaji/main/createcluster.sh)
 
-To Add Worker
+Add Worker
   To Add the Worker, cluster name and version must same form exsiting cluster,
   To see exsiting cluster, exceute this command !
     kubectl get tcp -n default  | awk 'BEGIN { print "NAME VERSION" } NR > 1 { print $1, $2 }'
