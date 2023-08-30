@@ -11,7 +11,7 @@ export TENANT_NAMESPACE=default
 #to see exsiting cluster, exceute this command !
    #kubectl get tcp -n default  | awk 'BEGIN { print "NAME VERSION" } NR > 1 { print $1, $2 }'
 
-export TENANT_NAME=kube-0974
+export TENANT_NAME=kube-11b4e8
 export TENANT_VERSION=v1.26.7
 
 #worker Tenant parameters
@@ -19,7 +19,7 @@ export WORKER_VERSION=1.26.7 #version must same form exsiting cluster version, #
 export WORKER_FLAVOR=GP.1C2G
 export AVAILABILITY_ZONE=AZ_Public01_DC2
 export NETWORK=Public_Subnet02_DC2
-export COUNT=3
+export COUNT=4
 
 #Proejct Tenant Parameters
 . ~/cloud_development-openrc.sh
