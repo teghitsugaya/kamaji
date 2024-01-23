@@ -9,10 +9,10 @@ export KUBECONFIG=~/.kube/config
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
 export TENANT_NAME=kube-${rand} #Tenant Name must be unique
-export TENANT_VERSION=v1.27.0  #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
+export TENANT_VERSION=v1.29.1  #Version Available / Recomended = 1.29.1, 1.28.6, 1.27.10, 1.26.13
 
 #worker Tenant parameters
-export WORKER_VERSION=1.27.0 #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
+#export WORKER_VERSION=1.27.0 #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
 export WORKER_FLAVOR=GP.1C2G
 export AVAILABILITY_ZONE=AZ_Public01_DC2
 export NETWORK=Public_Subnet02_DC2
@@ -86,7 +86,7 @@ cat << EOF | tee script.sh > /dev/null 2>&1
 debug: True
 runcmd:
  - sudo apt-get update
- - sudo apt install -y kubeadm=${WORKER_VERSION}-00 kubelet=${WORKER_VERSION}-00 kubectl=${WORKER_VERSION}-00 --allow-downgrades --allow-change-held-packages
+ - sudo apt install -y kubeadm=${TENANT_VERSION}-00 kubelet=${TENANT_VERSION}-00 kubectl=${TENANT_VERSION}-00 --allow-downgrades --allow-change-held-packages
  - sudo apt-mark hold kubelet kubeadm kubectl
  - ${JOIN_CMD}
 EOF
