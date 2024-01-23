@@ -14,8 +14,8 @@ export TENANT_VERSION=v1.29.0  #Version Available / Recomended = 1.29.0, 1.28.6,
 #worker Tenant parameters
 #export WORKER_VERSION=1.27.0 #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
 export WORKER_FLAVOR=GP.1C2G
-export AVAILABILITY_ZONE=AZ_Public01_DC2
-export NETWORK=Public_Subnet02_DC2
+export AVAILABILITY_ZONE=AZ_Public01_DC1
+export NETWORK=Public_Subnet02_DC1
 export COUNT=3
 
 #Proejct Tenant Parameters
