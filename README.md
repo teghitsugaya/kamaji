@@ -1,8 +1,14 @@
 # Prequisites
   ### To Running The script for Create a clusters, Workstation must be:
-   - Installed Kubeadm Package
-   - Installed Kubectl Package
+   - Installed Kubeadm & Kubectl Package
+       echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+       curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+       sudo apt-get update
+       sudo apt-mark hold kubelet kubeadm kubectl
+       apt-get install -y kubeadm=1.22.1-00 kubelet=1.22.1-00 kubectl=1.22.1-00 --allow-downgrades --allow-change-held-packages
+
    - Installed jq Package
+       https://computingforgeeks.com/install-and-configure-openstack-client-on-linux/
    - Installed Openstack client Package
    - Have to comunicate to Public API URL Openstack Cluster
    - have a Kubeconfig Admin Kamaji Cluster and store to ~/.kube/config
