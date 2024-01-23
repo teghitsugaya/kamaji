@@ -2,6 +2,7 @@
   ### To Running The script for Create a clusters, Workstation must be:
    - Installed Kubeadm Package
    - Installed Kubectl Package
+   - Installed jq Package
    - Installed Openstack client Package
    - Have to comunicate to Public API URL Openstack Cluster
    - have a Kubeconfig Admin Kamaji Cluster and store to ~/.kube/config
