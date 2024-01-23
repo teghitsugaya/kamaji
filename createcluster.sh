@@ -23,7 +23,7 @@ export COUNT=3
 
 echo "Deploy Cluster Kubernetes"
 echo "Cluster Name: ${TENANT_NAME}"
-echo "Version: v${TENANT_VERSION}"
+echo "Version: ${TENANT_VERSION}"
 echo ""
 echo ""
 echo "Create Tenant Control Plane"
@@ -43,7 +43,7 @@ spec:
     service:
       serviceType: LoadBalancer
   kubernetes:
-    version: ${TENANT_VERSION}
+    version: v${TENANT_VERSION}
     kubelet:
       cgroupfs: systemd
   networkProfile:
