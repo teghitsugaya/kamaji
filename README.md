@@ -11,10 +11,9 @@
   ### Edit the parameters on the script
     export TENANT_NAMESPACE=default
     export TENANT_NAME=kube-${rand} #Tenant Name must be unique
-    export TENANT_VERSION=v1.26.7  #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
+    export TENANT_VERSION=1.26.7  #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
 
     #worker Tenant parameters
-    export WORKER_VERSION=1.26.7 #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
     export WORKER_FLAVOR=GP.1C2G
     export AVAILABILITY_ZONE=AZ_Public01_DC2
     export NETWORK=Public_Subnet02_DC2
