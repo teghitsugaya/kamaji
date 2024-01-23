@@ -9,7 +9,7 @@ export KUBECONFIG=~/.kube/config
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
 export TENANT_NAME=kube-${rand} #Tenant Name must be unique
-export TENANT_VERSION=v1.29.0  #Version Available / Recomended = 1.29.0, 1.28.6, 1.27.10, 1.26.13
+export TENANT_VERSION=v1.27.0  #Version Available / Recomended = 1.29.0, 1.28.6, 1.27.10, 1.26.13
 
 #worker Tenant parameters
 #export WORKER_VERSION=1.27.0 #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
