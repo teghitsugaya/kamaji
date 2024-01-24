@@ -11,17 +11,17 @@ export TENANT_NAMESPACE=default
 #to see exsiting cluster, exceute this command !
    #kubectl get tcp -n default  | awk 'BEGIN { print "NAME VERSION" } NR > 1 { print $1, $2 }'
 
-export TENANT_NAME=kube-11b4e8
-export TENANT_VERSION=v1.26.7
+export TENANT_NAME=kube-a22aa7
+export TENANT_VERSION=1.27.0
 
 #worker Tenant parameters
-export WORKER_VERSION=1.26.7 #version must same form exsiting cluster version, #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
+#export WORKER_VERSION=1.26.7 #version must same form exsiting cluster version, #Version Available / Recomended = 1.27.0, 1.26.7, 1.25.12
 export WORKER_FLAVOR=GP.1C2G
 export AVAILABILITY_ZONE=AZ_Public01_DC2
 export NETWORK=Public_Subnet02_DC2
-export COUNT=4
+export COUNT=2
 
-#Proejct Tenant Parameters
+#Project Tenant Parameters
 . ~/cloud_development-openrc.sh
 
 kubectl get secrets -n ${TENANT_NAMESPACE} ${TENANT_NAME}-admin-kubeconfig -o json \
@@ -39,7 +39,7 @@ cat << EOF | tee script.sh > /dev/null 2>&1
 debug: True
 runcmd:
  - sudo apt-get update
- - sudo apt install -y kubeadm=${WORKER_VERSION}-00 kubelet=${WORKER_VERSION}-00 kubectl=${WORKER_VERSION}-00 --allow-downgrades --allow-change-held-packages
+ - sudo apt install -y kubeadm=${TENANT_VERSION}-00 kubelet=${TENANT_VERSION}-00 kubectl=${TENANT_VERSION}-00 --allow-downgrades --allow-change-held-packages
  - sudo apt-mark hold kubelet kubeadm kubectl
  - ${JOIN_CMD}
 EOF
