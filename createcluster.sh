@@ -8,13 +8,13 @@ export KUBECONFIG=~/.kube/config
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
-export TENANT_NAME=jkt3-tenant-${rand} #Tenant Name must be unique
+export TENANT_NAME=jkt2-tenant-${rand} #Tenant Name must be unique
 export TENANT_VERSION=1.27.0 #Version Available/Recomended = 1.27.0, 1.26.7, 1.25.12  (on develop image for version= 1.29.0, 1.28.6, 1.27.10, 1.26.13)
 
 #worker Tenant parameters
 export WORKER_FLAVOR=GP.1C2G
-export AVAILABILITY_ZONE=AZ_Public01_DC3
-export NETWORK=Public_Subnet02_DC3
+export AVAILABILITY_ZONE=AZ_Public01_DC2
+export NETWORK=Public_Subnet02_DC2
 export COUNT=1
 
 #Proejct Tenant Parameters
