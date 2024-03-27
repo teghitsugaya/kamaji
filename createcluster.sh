@@ -104,9 +104,15 @@ for i in $(seq 1 ${COUNT}); do
 done
 
 
-
+#calico
 #kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
-kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml > /dev/null 2>&1
+
+#cannal
+#kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml > /dev/null 2>&1
+
+#cilium
+helm repo add cilium https://helm.cilium.io/ > /dev/null 2>&1
+helm install cilium cilium/cilium --version 1.15.3 --namespace kube-system > /dev/null 2>&1
 
 while true; do  
   STATUS=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get deploy -n kube-system | grep coredns | awk '{print $4}') #Mengambil parameter deployment coredns, kedepannya parameter yang diambil yaitu, pod (running), node (ready)
