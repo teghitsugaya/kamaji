@@ -163,6 +163,8 @@ echo ""
 
 echo "Access via Kubernetes Dashboard"
 echo ""
+nodeport=$(kubectl get svc kubernetes-dashboard-kong-proxy -n kubernetes-dashboard --output=jsonpath='{.spec.ports[?(@.port==443)].nodePort}')
+ipworker=$(kubectl get node -o wide | awk 'NR==2 {print $6}')
 echo "https://$ipworker:$nodeport"
 echo ""
 echo ""
