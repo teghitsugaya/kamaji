@@ -137,7 +137,7 @@ sleep 2s
 #Deploy Metrics
 helm --kubeconfig=${TENANT_NAME}.kubeconfig repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/ > /dev/null 2>&1
 helm --kubeconfig=${TENANT_NAME}.kubeconfig upgrade --install metrics-server metrics-server/metrics-server -n kube-system  > /dev/null 2>&1
-kubectl --kubeconfig=${TENANT_NAME}.kubeconfi -n kube-system patch deployment metrics-server --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/args", "value": ["--secure-port=10250", "--cert-dir=/tmp", "--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname", "--kubelet-use-node-status-port", "--metric-resolution=15s", "--kubelet-insecure-tls"]}]' > /dev/null 2>&1
+kubectl --kubeconfig=${TENANT_NAME}.kubeconfig -n kube-system patch deployment metrics-server --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/args", "value": ["--secure-port=10250", "--cert-dir=/tmp", "--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname", "--kubelet-use-node-status-port", "--metric-resolution=15s", "--kubelet-insecure-tls"]}]' > /dev/null 2>&1
 
 
 #Deploy Kubernetes-dashboard
