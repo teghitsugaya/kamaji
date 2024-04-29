@@ -107,7 +107,7 @@ done
 
 
 #calico
-kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
+#kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
 #Flannel
 #kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml > /dev/null 2>&1
@@ -116,8 +116,8 @@ kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubuserco
 #kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/canal.yaml > /dev/null 2>&1
 
 #cilium
-#helm --kubeconfig=${TENANT_NAME}.kubeconfig repo add cilium https://helm.cilium.io/ > /dev/null 2>&1
-#helm --kubeconfig=${TENANT_NAME}.kubeconfig install cilium cilium/cilium --version 1.15.3 --namespace kube-system > /dev/null 2>&1
+helm --kubeconfig=${TENANT_NAME}.kubeconfig repo add cilium https://helm.cilium.io/ > /dev/null 2>&1
+helm --kubeconfig=${TENANT_NAME}.kubeconfig install cilium cilium/cilium --version 1.15.3 --namespace kube-system > /dev/null 2>&1
 
 
 while true; do  
@@ -134,11 +134,19 @@ done
 sleep 2s
 
 
+#Deploy Metrics
 helm --kubeconfig=${TENANT_NAME}.kubeconfig repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/ > /dev/null 2>&1
 helm --kubeconfig=${TENANT_NAME}.kubeconfig upgrade --install metrics-server metrics-server/metrics-server -n kube-system  > /dev/null 2>&1
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfi -n kube-system patch deployment metrics-server --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/args", "value": ["--secure-port=10250", "--cert-dir=/tmp", "--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname", "--kubelet-use-node-status-port", "--metric-resolution=15s", "--kubelet-insecure-tls"]}]' > /dev/null 2>&1
 
 
+#Deploy Kubernetes-dashboard
+helm --kubeconfig=${TENANT_NAME}.kubeconfig repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/ > /dev/null 2>&1
+helm --kubeconfig=${TENANT_NAME}.kubeconfig upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard > /dev/null 2>&1
+kubectl --kubeconfig=${TENANT_NAME}.kubeconfig --namespace kubernetes-dashboard  patch svc kubernetes-dashboard-kong-proxy  -p '{"spec": {"type": "NodePort"}}' > /dev/null 2>&1
+kubectl --kubeconfig=${TENANT_NAME}.kubeconfig create clusterrolebinding dashaccess --clusterrole=cluster-admin --serviceaccount=kubernetes-dashboard:default -n kubernetes-dashboard > /dev/null 2>&1
+
+sleep 2s
 
 echo ""
 echo ""
@@ -149,7 +157,19 @@ echo ""
 
 echo "Your Cluster is Ready !!!"
 echo ""
-echo "To Use your cluster = export KUBECONFIG=$PWD/${TENANT_NAME}.kubeconfig"
+echo "To Use your cluster via CLI = export KUBECONFIG=$PWD/${TENANT_NAME}.kubeconfig"
+echo ""
+echo ""
+
+echo "Access via Kubernetes Dashboard"
+echo ""
+echo "https://$ipworker:$nodeport"
+echo ""
+echo ""
+
+echo "Access Kubernetes Dashboard using Bearer Token!!!"
+echo ""
+echo "kubectl -n kubernetes-dashboard create token default"
 echo ""
 
 rm -rf script.sh > /dev/null 2>&1
