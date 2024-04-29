@@ -52,6 +52,8 @@ spec:
     version: v${TENANT_VERSION}
     kubelet:
       cgroupfs: systemd
+      preferredAddressTypes:
+      - InternalIP
   networkProfile:
     port: 6443
   addons:
