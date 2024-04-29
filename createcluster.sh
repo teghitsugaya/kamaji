@@ -110,14 +110,14 @@ done
 #kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
 #Flannel
-#kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml > /dev/null 2>&1
+kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml > /dev/null 2>&1
 
 #Canal
 #kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/canal.yaml > /dev/null 2>&1
 
 #cilium
-helm --kubeconfig=${TENANT_NAME}.kubeconfig repo add cilium https://helm.cilium.io/ > /dev/null 2>&1
-helm --kubeconfig=${TENANT_NAME}.kubeconfig install cilium cilium/cilium --version 1.15.3 --namespace kube-system > /dev/null 2>&1
+#helm --kubeconfig=${TENANT_NAME}.kubeconfig repo add cilium https://helm.cilium.io/ > /dev/null 2>&1
+#helm --kubeconfig=${TENANT_NAME}.kubeconfig install cilium cilium/cilium --version 1.15.3 --namespace kube-system > /dev/null 2>&1
 
 
 while true; do  
@@ -131,8 +131,7 @@ case "$STATUS" in
   esac
 done
 
-sleep 2s
-
+sleep 5s
 
 #Deploy Metrics
 helm --kubeconfig=${TENANT_NAME}.kubeconfig repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/ > /dev/null 2>&1
@@ -146,7 +145,6 @@ helm --kubeconfig=${TENANT_NAME}.kubeconfig upgrade --install kubernetes-dashboa
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig --namespace kubernetes-dashboard  patch svc kubernetes-dashboard-kong-proxy  -p '{"spec": {"type": "NodePort"}}' > /dev/null 2>&1
 kubectl --kubeconfig=${TENANT_NAME}.kubeconfig create clusterrolebinding dashaccess --clusterrole=cluster-admin --serviceaccount=kubernetes-dashboard:default -n kubernetes-dashboard > /dev/null 2>&1
 
-sleep 2s
 
 echo ""
 echo ""
@@ -163,15 +161,16 @@ echo ""
 
 echo "Access via Kubernetes Dashboard"
 echo ""
-nodeport=$(kubectl get svc kubernetes-dashboard-kong-proxy -n kubernetes-dashboard --output=jsonpath='{.spec.ports[?(@.port==443)].nodePort}')
-ipworker=$(kubectl get node -o wide | awk 'NR==2 {print $6}')
+nodeport=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get svc kubernetes-dashboard-kong-proxy -n kubernetes-dashboard --output=jsonpath='{.spec.ports[?(@.port==443)].nodePort}')
+ipworker=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig get node -o wide | awk 'NR==2 {print $6}')
 echo "https://$ipworker:$nodeport"
 echo ""
 echo ""
 
 echo "Access Kubernetes Dashboard using Bearer Token!!!"
 echo ""
-echo "kubectl -n kubernetes-dashboard create token default"
+bearer_token=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig -n kubernetes-dashboard create token default)
+echo "$bearer_token"
 echo ""
 
 rm -rf script.sh > /dev/null 2>&1
