@@ -110,10 +110,10 @@ done
 #kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml > /dev/null 2>&1
 
 #Flannel
-kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml > /dev/null 2>&1
+#kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml > /dev/null 2>&1
 
 #Canal
-#kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/canal.yaml > /dev/null 2>&1
+kubectl --kubeconfig=${TENANT_NAME}.kubeconfig apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/canal.yaml > /dev/null 2>&1
 
 #cilium
 #helm --kubeconfig=${TENANT_NAME}.kubeconfig repo add cilium https://helm.cilium.io/ > /dev/null 2>&1
