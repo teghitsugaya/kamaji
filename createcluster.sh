@@ -167,11 +167,11 @@ echo "https://$ipworker:$nodeport"
 echo ""
 echo ""
 
-echo "Access Kubernetes Dashboard using Bearer Token!!!"
-echo ""
-bearer_token=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig -n kubernetes-dashboard create token default)
-echo "$bearer_token"
-echo ""
+#echo "Access Kubernetes Dashboard using Bearer Token!!!"
+#echo ""
+#bearer_token=$(kubectl --kubeconfig=${TENANT_NAME}.kubeconfig -n kubernetes-dashboard create token default)
+#echo "$bearer_token"
+#echo ""
 
 rm -rf script.sh > /dev/null 2>&1
 rm -rf createcluster.sh > /dev/null 2>&1
