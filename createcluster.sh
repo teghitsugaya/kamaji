@@ -9,7 +9,7 @@ export KUBECONFIG=~/.kube/config
 #tenant cluster parameters
 export TENANT_NAMESPACE=default
 export TENANT_NAME=jkt2-tenant-${rand} #Tenant Name must be unique
-export TENANT_VERSION=1.29.0
+export TENANT_VERSION=1.29.1
 
 #Version Available
 #1.29 = 1.29.0, 1.29.1
@@ -42,7 +42,7 @@ metadata:
   name: ${TENANT_NAME}
   namespace: ${TENANT_NAMESPACE}
 spec:
-  dataStore: default
+  dataStore: kamaji-etcd
   controlPlane:
     deployment:
       replicas: 3
