@@ -42,7 +42,7 @@ metadata:
   name: ${TENANT_NAME}
   namespace: ${TENANT_NAMESPACE}
 spec:
-  dataStore: kamaji-etcd
+  dataStore: kamaji-etcd-2
   controlPlane:
     deployment:
       replicas: 3
