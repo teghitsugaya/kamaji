@@ -67,7 +67,7 @@ spec:
 EOF
 
 while true; do
-  STATUS=$(kubectl get tcp | grep ${TENANT_NAME} | awk '{print $3}')
+  STATUS=$(kubectl get tcp -n ${TENANT_NAMESPACE} | grep ${TENANT_NAME} | awk '{print $3}')
 
 case "$STATUS" in
     "Ready")
