@@ -8,7 +8,7 @@ export KUBECONFIG=~/.kube/config
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=kamaji-tenant
-export TENANT_NAME=jkt2-tenant-${rand} #Tenant Name must be unique
+export TENANT_NAME=jbbk-tenant-${rand} #Tenant Name must be unique
 export TENANT_VERSION=1.29.1
 
 #Version Available
