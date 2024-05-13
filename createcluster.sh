@@ -4,7 +4,8 @@ echo ""
 export rand=$(openssl rand -hex 3)
 
 ##export cluster admin kamaji
-export KUBECONFIG=~/.kube/config
+#export KUBECONFIG=~/.kube/config
+export KUBECONFIG=~/jbbk-adminkamaji-production
 
 #tenant cluster parameters
 export TENANT_NAMESPACE=kamaji-tcp
