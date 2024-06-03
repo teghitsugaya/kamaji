@@ -19,12 +19,12 @@ export TENANT_VERSION=1.29.1
 #1.27 = #1.27.12, 1.27.11, 1.27.10, 1.27.9, 1.27.8, 1.27.7, 1.27.6, 1.27.5, 1.27.4, 1.27.3, 1.27.2, 1.27.1 
 
 #worker Tenant parameters
-export WORKER_FLAVOR=GP.1C2G
+export WORKER_FLAVOR=GP.2C4G
 #export AVAILABILITY_ZONE=AZ_Public01_DC2
 export AVAILABILITY_ZONE=AZ_Public01_JBBK
 #export NETWORK=Public_Subnet02_DC2
 export NETWORK=Public_Subnet01_JBBK
-export COUNT=2
+export COUNT=1
 
 #Proejct Tenant Parameters
 . ~/cloud_development-openrc.sh
@@ -104,7 +104,7 @@ EOF
 for i in $(seq 1 ${COUNT}); do
    export rand=$(openssl rand -hex 2)   
    #openstack server create --flavor ${WORKER_FLAVOR} --image "DKubes Worker v1.1" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --user-data script.sh "${TENANT_NAME}-worker-${rand}" > /dev/null 2>&1 #perhatikan security group dan keypair (harus ada pada user yang memprovisioning)
-   openstack server create --flavor GP.2C4G-amd --image "DKubes Worker v1.1"  --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --user-data script.sh "${TENANT_NAME}-worker-${rand}" > /dev/null 2>&1
+   openstack server create --flavor GP.4C48-amd --image "DKubes Worker v1.1"  --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --user-data script.sh "${TENANT_NAME}-worker-${rand}" > /dev/null 2>&1
 done
 
 
