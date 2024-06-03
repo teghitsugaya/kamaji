@@ -24,7 +24,7 @@ export WORKER_FLAVOR=GP.2C4G
 export AVAILABILITY_ZONE=AZ_Public01_JBBK
 #export NETWORK=Public_Subnet02_DC2
 export NETWORK=Public_Subnet01_JBBK
-export COUNT=1
+export COUNT=2
 
 #Proejct Tenant Parameters
 . ~/cloud_development-openrc.sh
