@@ -104,7 +104,7 @@ EOF
 for i in $(seq 1 ${COUNT}); do
    export rand=$(openssl rand -hex 2)   
    #openstack server create --flavor ${WORKER_FLAVOR} --image "DKubes Worker v1.1" --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --user-data script.sh "${TENANT_NAME}-worker-${rand}" > /dev/null 2>&1 #perhatikan security group dan keypair (harus ada pada user yang memprovisioning)
-   openstack server create --flavor GP.4C48-amd --image "DKubes Worker v1.1"  --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --user-data script.sh "${TENANT_NAME}-worker-${rand}" > /dev/null 2>&1
+   openstack server create --flavor GP.4C8G-amd --image "DKubes Worker v1.1"  --network ${NETWORK} --security-group allow-all --availability-zone ${AVAILABILITY_ZONE} --key-name remote-server --user-data script.sh "${TENANT_NAME}-worker-${rand}" > /dev/null 2>&1
 done
 
 
