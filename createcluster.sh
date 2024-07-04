@@ -55,7 +55,7 @@ spec:
     kubelet:
       cgroupfs: systemd
       preferredAddressTypes:
-      - InternalIP
+      - ExternalIP
   networkProfile:
     port: 6443
   addons:
