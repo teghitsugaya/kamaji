@@ -95,9 +95,6 @@ cat << EOF | tee script.sh > /dev/null 2>&1
 #cloud-config
 debug: True
 runcmd:
- - sudo apt-get update
- - sudo apt install -y kubeadm=${TENANT_VERSION}-1.1 kubelet=${TENANT_VERSION}-1.1 kubectl=${TENANT_VERSION}-1.1 --allow-downgrades --allow-change-held-packages
- - sudo apt-mark hold kubelet kubeadm kubectl
  - ${JOIN_CMD}
 EOF
 
