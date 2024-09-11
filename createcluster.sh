@@ -14,9 +14,9 @@ export TENANT_NAME=jbbk-tenant-cluster-${rand} #Tenant Name must be unique
 export TENANT_VERSION=1.29.1
 
 #Version Available
-#1.29 = 1.29.0, 1.29.1
-#1.28 = 1.28.8, 1.28.7, 1.28.6, 1.28.5, 1.28.4, 1.28.3, 1.28.2, 1.28.1, 1.28.0 
-#1.27 = #1.27.12, 1.27.11, 1.27.10, 1.27.9, 1.27.8, 1.27.7, 1.27.6, 1.27.5, 1.27.4, 1.27.3, 1.27.2, 1.27.1 
+#1.30 = 1.30.2, 1.30.3
+#1.29 = 1.29.6, 1.29.7
+#1.28 = 1.28.11, 1.28.12
 
 #worker Tenant parameters
 export WORKER_FLAVOR=GP.2C4G
