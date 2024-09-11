@@ -11,10 +11,10 @@ export KUBECONFIG=~/.kube/config
 #tenant cluster parameters
 export TENANT_NAMESPACE=kamaji-tcp
 export TENANT_NAME=jbbk-tenant-cluster-${rand} #Tenant Name must be unique
-export TENANT_VERSION=1.29.1
+export TENANT_VERSION=1.30.2
 
 #Version Available
-#1.30 = 1.30.2, 1.30.3
+#1.30 = 1.30.2
 #1.29 = 1.29.6, 1.29.7
 #1.28 = 1.28.11, 1.28.12
 
