@@ -11,7 +11,7 @@ export KUBECONFIG=~/.kube/config
 #tenant cluster parameters
 export TENANT_NAMESPACE=kamaji-tcp
 export TENANT_NAME=jababeka-cluster-${rand} #Tenant Name must be unique
-export TENANT_VERSION=1.30.2
+export TENANT_VERSION=1.29.7
 
 #Version Available
 #1.30 = 1.30.1 1.30.2
